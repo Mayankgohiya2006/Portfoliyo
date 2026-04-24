@@ -1,17 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Navbar from "../Component/Navbar";
 import myimg from "../assets/Images/portfolyo-img.webp";
 import Button from "../Component/Button";
 import SkillDisplay from "../Component/SkillDisplay";
-import Archievement from "../Component/Archievement";
-import skillsvarz from "../assets/Images/skillsvarzlogo.webp";
 import Footer from "../Component/Footer";
 import AboutCom from "../Component/AboutCom";
-import GClogo from "../assets/Images/GClogo.webp"
 import ProjectComponent from "../Component/ProjectComponent";
+import Archivementpage from "./Archivementpage";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const HomePage = () => {
-  
+  useGSAP(() => {
+    gsap.fromTo("#mytech", {
+      y: 100,
+      opacity: 0,
+      // duration: 1,
+      scrollTrigger: {
+        trigger: ".section3",
+        start: "top 60%",
+      },
+    },{
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      scrollTrigger: {
+        trigger: ".section3",
+        start: "top 60%",
+      },
+    });
+  });
 
   const [skills, setSkills] = useState([
     {
@@ -40,78 +60,122 @@ const HomePage = () => {
     },
   ]);
 
-  const [archiviement, setArchiviement] = useState([
-    {
-      title: "Certificate",
-      Desc: "Successfully completed a comprehensive Front-End Development program from Gravity Coding, where I gained strong proficiency in building responsive and user-friendly web interfaces. Developed hands-on experience with modern technologies like HTML, CSS, Tailwind CSS, JavaScript, and React, along with a solid understanding of UI/UX principles and problem-solving. This certification reflects my ability to create efficient, scalable, and visually appealing web applications.",
-      logo: GClogo,
-      by: "Gravity Coding",
-    },
-    {
-      title: "Certificate",
-      Desc: "Awarded the Animation Master title at the Inter-Batch Hackathon 2.0,a web development competition organized by Gravity Coding. Collaborated as part of Team Leo Legends to design and implement creative, user-focused solutions, showcasing strong front-end development skills, problem-solving ability.",
-      logo: skillsvarz,
-      by: "Skillsvarz Gravity Coding pvt ltd.",
-    },
-  ]);
+  const cursorRef = useRef();
 
- 
+  useGSAP(() => {
+    const moveCursor = (e) => {
+      gsap.to(cursorRef.current, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.4,
+        ease: "power3.out",
+      });
+    };
+    const main = document.getElementById("main");
 
+    main.addEventListener("mousemove", moveCursor);
+
+    return () => {
+      main.removeEventListener("mousemove", moveCursor);
+    };
+  });
+
+  useGSAP(() => {
+    gsap.from(".animate", {
+      y: 100,
+      opacity: 0,
+      stagger: 0.2,
+      duration: 1,
+      ease: "power3.out",
+    });
+
+    gsap.fromTo(
+      ".deco",
+      {
+        x: -100,
+        opacity: 0,
+        scale: 0.7,
+        filter: "blur(8px)",
+      },
+      {
+        x: 0,
+        duration: 2,
+        opacity: 1,
+        scale: 1,
+        filter: "blur(0px)",
+      },
+    );
+  });
   return (
-    <div className=" bg-black">
-      <Navbar />
+    <div id="main" className="  bg-black overflow-hidden ">
+      {/* Cursor Div */}
+      <div
+        ref={cursorRef}
+        className="w-4 h-4 bg-gray-400 rounded-full fixed top-0 left-0 pointer-events-none z-999"
+      ></div>
 
-      {/* Section   1 */}
+      {/* Navbar   1 */}
+      {/* <Navbar /> */}
+
+      {/* Section   2 */}
       <section>
-        <div className="h-full mt-10  flex text-white w-full  mb-30">
-          <div className="bg-black flex flex-col justify-end px-10  w-[70vw] h-[90vh]">
-            <h3 className="text-3xl font1 leading-none">
+        <div className="w-full min-h-screen    flex flex-col lg:flex-row text-white  md:mt-10 mb-20">
+          {/* Left Section */}
+          <div
+            className=" flex flex-col justify-end px-5 md:px-10 
+                  w-full lg:w-[70vw] h-[50vh] lg:h-[90vh] py-10 md:py-0  "
+          >
+            <h3 className="text-lg deco md:text-3xl lg:text-3xl font1 leading-tight lg:px-2 md:px-1">
               I’m Specialized in
               <br /> Creating Website Design.
             </h3>
-            <h1 className="text-[10rem] font5 ">MAYANK</h1>
+
+            <h1 className="text-5xl animate md:text-8xl lg:text-[10rem] font5">
+              MAYANK
+            </h1>
           </div>
-          <div className=" p-15 flex justify-end bg-black w-[30vw] h-[90vh]">
-            <div className="h-[35vh] w-[15vw] ">
+
+          {/* Right Section */}
+          <div
+            className=" flex justify-start lg:justify-end  md:justify-center
+             items-center w-full lg:w-[30vw] h-auto lg:h-[90vh] p-5 lg:mr-8 md:ml-60"
+          >
+            <div className="h-[40vh] w-[50vw] md:w-[30vw] lg:w-[15vw] ">
               <img
                 src={myimg}
-                className="h-full mt-10 w-full object-cover object-top"
+                className="h-full w-full object-cover object-top lg:mt-40.5"
                 alt=""
               />
             </div>
           </div>
         </div>
 
-         {/* Section  2 */}
-       <ProjectComponent/>
+        {/* Section  2 */}
+        <ProjectComponent />
       </section>
 
       {/* Section   3 */}
-      <section className="bg-black">
+      <section className="bg-black section3">
         <div className="flex items-center justify-center h-20">
           <Button btnName="More" />
         </div>
-        <div className="px-15 ">
-          <h1 className="text-white text-6xl my-14 font5">My Tech Skills</h1>
-          {skills.map((val) => {
-            return <SkillDisplay data={val} />;
+        <div className="lg:px-15 md:px-10 px-5 ">
+          <h1 id="mytech" className="text-white lg:text-6xl md:text-4xl text-3xl lg:my-14 my-7 font5">
+            My Tech Skills
+          </h1>
+          {skills.map((val, index) => {
+            return <SkillDisplay key={index} data={val} />;
           })}
         </div>
       </section>
 
       {/* Section   4 */}
-     <AboutCom/>
+      <AboutCom />
 
       {/* Section   5 */}
-      <h1 className="text-white text-6xl font5 mt-40 px-10 ">Achievement</h1>
-      <section className="h-[80vh] grid grid-cols-3 gap-7 cursor-pointer  px-5 ">
-        {archiviement.map((val) => {
-          return <Archievement data={val} />;
-        })}
-      </section>
+      <Archivementpage />
 
       {/* Section   6 */}
-
       <Footer />
     </div>
   );
