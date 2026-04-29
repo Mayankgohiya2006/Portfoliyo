@@ -10,27 +10,34 @@ import Archivementpage from "./Archivementpage";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { redirect, useNavigate } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 
 const HomePage = () => {
+  let redirect = useNavigate()
   useGSAP(() => {
-    gsap.fromTo("#mytech", {
-      y: 100,
-      opacity: 0,
-      // duration: 1,
-      scrollTrigger: {
-        trigger: ".section3",
-        start: "top 60%",
+    gsap.fromTo(
+      "#mytech",
+      {
+        y: 100,
+        opacity: 0,
+        // duration: 1,
+        scrollTrigger: {
+          trigger: ".section3",
+          start: "top 60%",
+        },
       },
-    },{
-      y: 0,
-      opacity: 1,
-      duration: 1,
-      scrollTrigger: {
-        trigger: ".section3",
-        start: "top 60%",
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        scrollTrigger: {
+          trigger: ".section3",
+          start: "top 60%",
+        },
       },
-    });
+    );
   });
 
   const [skills, setSkills] = useState([
@@ -44,7 +51,7 @@ const HomePage = () => {
     },
     {
       sno: "03",
-      skillname: "JavaScript",
+      skillname: "JavaScript (ES6+)",
     },
     {
       sno: "04",
@@ -114,9 +121,6 @@ const HomePage = () => {
         className="w-4 h-4 bg-gray-400 rounded-full fixed top-0 left-0 pointer-events-none z-999"
       ></div>
 
-      {/* Navbar   1 */}
-      {/* <Navbar /> */}
-
       {/* Section   2 */}
       <section>
         <div className="w-full min-h-screen    flex flex-col lg:flex-row text-white  md:mt-10 mb-20">
@@ -157,10 +161,25 @@ const HomePage = () => {
       {/* Section   3 */}
       <section className="bg-black section3">
         <div className="flex items-center justify-center h-20">
-          <Button btnName="More" />
+          <div onClick={()=>{
+            redirect("/projects")
+          }} className="border cursor-pointer border-gray-100 h-10 w-50  flex items-center justify-center rounded-3xl ">
+            <div className=" group  rounded-3xl  text-xl h-10 w-35 flex flex-col justify-top cursor-pointer text-center overflow-hidden">
+              <button className="group-hover:-translate-y-7 translate-y-1 text-white transition-all duration-300">
+                More
+              </button>
+              <button className="group-hover:-translate-y-6 translate-y-8 text-white transition-all duration-300">
+                More
+              </button>
+            </div>
+            <FaArrowRightLong className="text-2xl text-white" />
+          </div>
         </div>
         <div className="lg:px-15 md:px-10 px-5 ">
-          <h1 id="mytech" className="text-white lg:text-6xl md:text-4xl text-3xl lg:my-14 my-7 font5">
+          <h1
+            id="mytech"
+            className="text-white lg:text-6xl md:text-4xl text-3xl lg:my-14 my-7 font5"
+          >
             My Tech Skills
           </h1>
           {skills.map((val, index) => {

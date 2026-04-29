@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { HiMenu, HiX } from "react-icons/hi";
-import Button from "./Button";
+// import Button from "./Button";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -13,9 +13,12 @@ const Navbar = () => {
     <div className="bg-black z-50 fixed top-0 w-full">
       <div className="flex items-center justify-between h-[10vh] px-5 lg:px-10">
         {/* Logo */}
-        <h1 onClick={()=>{
-          redirect("/")
-        }} className="text-white text-lg lg:text-2xl font5">
+        <h1
+          onClick={() => {
+            redirect("/");
+          }}
+          className="text-white text-lg lg:text-2xl font5"
+        >
           MAYANK K. GOHIYA
         </h1>
 
@@ -48,7 +51,22 @@ const Navbar = () => {
             Projects
           </h2>
 
-          <Button btnName="Contact" />
+          <div
+            onClick={() => {
+              redirect("/contact");
+            }}
+            className="border cursor-pointer border-gray-100 h-10 w-50  flex items-center justify-center rounded-3xl "
+          >
+            <div className=" group  rounded-3xl  text-xl h-10 w-35 flex flex-col justify-top cursor-pointer text-center overflow-hidden">
+              <button className="group-hover:-translate-y-7 translate-y-1 text-white transition-all duration-300">
+                Contact
+              </button>
+              <button className="group-hover:-translate-y-6 translate-y-8 text-white transition-all duration-300">
+                Contact
+              </button>
+            </div>
+            <FaArrowRightLong className="text-2xl text-white" />
+          </div>
         </div>
 
         {/* Mobile Menu Icon */}
@@ -91,7 +109,17 @@ const Navbar = () => {
           >
             Projects
           </h2>
-          <Button btnName="Contact" />
+          <div className="border cursor-pointer border-gray-100 h-10 w-50  flex items-center justify-center rounded-3xl ">
+            <div className=" group  rounded-3xl  text-xl h-10 w-35 flex flex-col justify-top cursor-pointer text-center overflow-hidden">
+              <button className="group-hover:-translate-y-7 translate-y-1 text-white transition-all duration-300">
+                Contact
+              </button>
+              <button className="group-hover:-translate-y-6 translate-y-8 text-white transition-all duration-300">
+                Contact
+              </button>
+            </div>
+            <FaArrowRightLong className="text-2xl text-white" />
+          </div>
         </div>
       )}
     </div>

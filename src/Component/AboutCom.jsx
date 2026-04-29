@@ -2,10 +2,12 @@ import React from "react";
 import Button from "./Button";
 import aboutimg from "../assets/Images/Aboutimg.webp";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";  
-
+import gsap from "gsap";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const AboutCom = () => {
+  let redirect = useNavigate()
   useGSAP(() => {
     gsap.fromTo(
       ".aboutme",
@@ -34,7 +36,9 @@ const AboutCom = () => {
       {/* Left Side */}
       <div className="w-full lg:w-1/2 flex items-center">
         <div className="w-full lg:w-[50vw] flex flex-col justify-between text-gray-300 gap-6">
-          <h1 className="text-3xl aboutme md:text-4xl lg:text-6xl font5">About Me</h1>
+          <h1 className="text-3xl aboutme md:text-4xl lg:text-6xl font5">
+            About Me
+          </h1>
 
           <div className="flex flex-col gap-4 md:gap-6">
             <p className="text-sm md:text-lg font1">
@@ -54,7 +58,22 @@ const AboutCom = () => {
           </div>
 
           <div className="flex justify-center">
-            <Button btnName="VIEW RESUME" />
+            <div
+              onClick={() => {
+                redirect("/contact");
+              }}
+              className="border cursor-pointer border-gray-100 h-10 w-50  flex items-center justify-center rounded-3xl "
+            >
+              <div className=" group  rounded-3xl  text-xl h-10 w-35 flex flex-col justify-top cursor-pointer text-center overflow-hidden">
+                <button className="group-hover:-translate-y-7 translate-y-1 text-white transition-all duration-300">
+                  View Resume
+                </button>
+                <button className="group-hover:-translate-y-6 translate-y-8 text-white transition-all duration-300">
+                  View Resume
+                </button>
+              </div>
+              <FaArrowRightLong className="text-2xl text-white" />
+            </div>
           </div>
         </div>
       </div>

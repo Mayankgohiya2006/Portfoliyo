@@ -1,5 +1,5 @@
 import React from "react";
-import { FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa6";
+import { FaGithub, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa6";
 import { IoArrowUpOutline } from "react-icons/io5";
 import footer from "../assets/Images/footer.webp";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +28,9 @@ const Footer = () => {
           </div>
 
           <div className="h-10 w-10 cursor-pointer text-white flex items-center justify-center rounded-lg hover:bg-amber-600 hover:border-black hover:text-black border border-gray-50">
-            <FaTwitter className="text-lg md:text-xl" />
+            <a href="https://github.com/Mayankgohiya2006">
+              <FaGithub className="text-lg md:text-xl" />
+            </a>
           </div>
         </div>
 
@@ -43,12 +45,13 @@ const Footer = () => {
         </div>
 
         {/* Navigation */}
-
       </div>
 
       {/* Let's Talk */}
       <div className="h-[5vh] hidden lg:flex   lg:h-[30vh] w-full flex flex-col items-center justify-center">
-        <div className="group ml-27 lg:ml-0 md:ml-0   md:pt-3 h-16 md:h-20 lg:h-25 cursor-pointer overflow-hidden w-[80vw] md:w-[45vw] lg:w-130">
+        <div onClick={()=>{
+          redirect("/contact")
+        }} className="group ml-27 lg:ml-0 md:ml-0   md:pt-3 h-16 md:h-20 lg:h-25 cursor-pointer overflow-hidden w-[80vw] md:w-[45vw] lg:w-130">
           <div className="flex gap-3 md:gap-5 items-center ">
             <h1 className="text-3xl md:text-6xl lg:text-8xl group-hover:-translate-y-25 transition-all duration-200 flex text-white font2">
               Let's Talk
@@ -64,8 +67,8 @@ const Footer = () => {
       </div>
 
       {/* Bottom Footer */}
-      <div className="h-[5vh] w-full flex  md:flex-row items-center justify-between px-5 md:px-10 lg:px-20 text-white lg:text-sm text-xs md:text-base">
-        <h1>© 2026 Mayank, All Rights Reserved</h1>
+      <div className="h-[5vh] w-full flex  md:flex-row items-center justify-between px-5 md:px-10 lg:px-20 text-white lg:text-sm text-[10px] md:text-base">
+        <h1 >© 2026 Mayank, All Rights Reserved</h1>
         <h1>Design with Passion in INDIA</h1>
       </div>
     </section>

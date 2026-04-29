@@ -3,12 +3,13 @@ import echochat from "../assets/Images/EchoChat.webp";
 import ProjectShow from "../Component/ProjectShow";
 import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
+import  orderkaro  from "../assets/Images/orderkaro.png";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 const ProjectComponent = () => {
   const [project, setProject] = useState([
     {
-      img: "https://framerusercontent.com/images/V4lj1ojcwHYYwKbpMzJdTrapej4.jpg?scale-down-to=1024",
+      img: orderkaro,
       title: "Order-Karo",
       desc: "Grocery delivery WebApp",
     },
