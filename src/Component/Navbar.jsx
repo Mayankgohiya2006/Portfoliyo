@@ -109,7 +109,12 @@ const Navbar = () => {
           >
             Projects
           </h2>
-          <div className="border cursor-pointer border-gray-100 h-10 w-50  flex items-center justify-center rounded-3xl ">
+          <div
+            onClick={() => {
+              redirect("/contact");
+            }}
+            className="border cursor-pointer border-gray-100 h-10 w-50  flex items-center justify-center rounded-3xl "
+          >
             <div className=" group  rounded-3xl  text-xl h-10 w-35 flex flex-col justify-top cursor-pointer text-center overflow-hidden">
               <button className="group-hover:-translate-y-7 translate-y-1 text-white transition-all duration-300">
                 Contact
