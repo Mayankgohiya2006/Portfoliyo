@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { createBrowserRouter } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import MainOutlet from "./MainOutlet";
