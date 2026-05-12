@@ -3,7 +3,7 @@ import echochat from "../assets/Images/EchoChat.webp";
 import ProjectShow from "../Component/ProjectShow";
 import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
-import  orderkaro  from "../assets/Images/orderkaro.png";
+import orderkaro from "../assets/Images/orderkaro.png";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 const ProjectComponent = () => {
@@ -12,21 +12,27 @@ const ProjectComponent = () => {
       img: orderkaro,
       title: "Order-Karo",
       desc: "Grocery delivery WebApp",
+      link: "https://orderkaro-grocery.netlify.app",
     },
     {
       img: echochat,
       title: "EchoChat",
       desc: "Real Time Chating Application",
+      link: "https://echochat-master.netlify.app",
+
     },
     {
       img: "https://framerusercontent.com/images/PZB0rXS1ZYIMaOVnG0gQICdoM.jpg?scale-down-to=1024",
       title: "Perfume",
       desc: "Real Time Chating Application",
+      link: "https://devmayankportfolio.netlify.app",
     },
   ]);
 
-   useGSAP(() => {
-      gsap.fromTo(".projects", {
+  useGSAP(() => {
+    gsap.fromTo(
+      ".projects",
+      {
         y: 100,
         opacity: 0,
         // duration: 1,
@@ -34,23 +40,27 @@ const ProjectComponent = () => {
         //   trigger: ".section4",
         //   start: "top 80%",
         // },
-      },{
+      },
+      {
         y: 0,
         opacity: 1,
         duration: 1.7,
-        scrub:2,
+        scrub: 2,
         scrollTrigger: {
           trigger: ".section4",
           start: "top 80%",
-          end:"top 30%"
+          end: "top 30%",
         },
-      });
-    });
+      },
+    );
+  });
   return (
-    <div className="section4" >
-        <h1 className="lg:text-6xl projects md:text-4xl text-2xl text-white md:px-10 px-5 pt-10 font5">Projects</h1>
+    <div className="section4">
+      <h1 className="lg:text-6xl projects md:text-4xl text-2xl text-white md:px-10 px-5 pt-10 font5">
+        Projects
+      </h1>
       <div className="p-5  lg:p-15 md:px-10  grid lg:grid-cols-2 grid-cols-1">
-        {project.map((val,ind) => {
+        {project.map((val, ind) => {
           return <ProjectShow key={ind} project={val} />;
         })}
       </div>
